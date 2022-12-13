@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${https://sewing_pattern_generator.github.io}
+      url: https://sewing_pattern_generator.github.io
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sewing pattern generator..</title>
     <script type="module" src="./scripts/Manager.js"></script>
-<style>
-    .measurements_container{
-        display: flex;
-        justify-content: flex-start;
-        gap: 1rem;
-        
-    }
-</style>
+    <link rel="stylesheet" href="./styles/main_layout.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/components.css">
+  
 </head>
 
 <body>
-    <div class="buttons_container">
-        <button id="downloadSVG" title="download">
-            download
-        </button>
-        <button id="generate_front_bodice" class="pattern" >
-            generate front bodice
-        </button>
 
-        <button id="generate_back_bodice" class="pattern">
-            generate back bodice
-        </button>
-    </div>
-<h3>Measurements</h3>
-    <div class="measurements_container">
-        
-        <div class="measurement-group">
-            <label>NecK circumference</label>
-            <input id="neck_circ" type=" number" value="35">
+    <div class="body_container">
+        <div class="buttons_container">
+            <button id="downloadSVG" title="download">
+                download
+            </button>
+            <button id="generate_front_bodice" class="pattern">
+                generate front bodice
+            </button>
+    
+            <button id="generate_back_bodice" class="pattern">
+                generate back bodice
+            </button>
         </div>
-        <div class="measurement-group">
-            <label>Shoulder width</label>
-            <input id="shoulder_width" type="number" value="36">
+        <div class="left">
+            <div class="measurements_container">
+                <div class="measurement-title">
+                    <h3>Measurements</h3>
+                </div>
+                <div class="measurement-group">
+                    <label>Line thickness</label>
+                    <input type="range" min="0" max="10" value="5" step="1">
+                </div>
+                <div class="measurement-group">
+                    <label>Neck circumference</label>
+                    <input id="neck_circ" type=" number" value="35">
+                </div>
+                <div class="measurement-group">
+                    <label>Shoulder width</label>
+                    <input id="shoulder_width" type="number" value="36">
+                </div>
+                <div class="measurement-group">
+                    <label>Armhole circumference</label>
+                    <input id="armhole_circ" type="number" value="36">
+                </div>
+                <div class="measurement-group">
+                    <label>Bust circumference</label>
+                    <input id="bust_circ" type="number" value="86">
+                </div>
+                <div class="measurement-group">
+                    <label>Shoulder to waist length front</label>
+                    <input id="shoulder_to_waist" type="number" value="40">
+                </div>
+                <div class="measurement-group">
+                    <label>Shoulder to waist length back</label>
+                    <input id="shoulder_to_waist_back" type="number" value="37">
+                </div>
+                <div class="measurement-group">
+                    <label>Waist circumference</label>
+                    <input id="waist_circ" type="number" value="70">
+                </div>
+                <div class="measurement-group">
+                    <label>Bust span</label>
+                    <input id="bust_span" type="number" value="9">
+                </div>
+                <div class="measurement-group">
+                    <label>Bust depth</label>
+                    <input id="bust_depth" type="number" value="19">
+                </div>
+            </div>
         </div>
-        <div class="measurement-group">
-            <label>Armhole circumference</label>
-            <input id="armhole_circ" type="number" value="36">
+        <div class="right">
+            <div id="container">
+                <svg height="80vh" width="100%" viewBox=" 0 0 60 60" id="svg"
+                    preserveAspectRatio="xMinYMid meet">
+                    <path id="grid" stroke="grey " fill="none" stroke-width=".05" />
+                  
+                </svg>
+            </div>
         </div>
-        <div class="measurement-group">
-            <label>Bust circumference</label>
-            <input id="bust_circ" type="number" value="86">
-        </div>
-        <div class="measurement-group">
-            <label>Shoulder to waist length front</label>
-            <input id="shoulder_to_waist" type="number" value="40">
-        </div>
-        <div class="measurement-group">
-            <label>Shoulder to waist length back</label>
-            <input id="shoulder_to_waist_back" type="number" value="37">
-        </div>
-        <div class="measurement-group">
-            <label>Waist circumference</label>
-            <input id="waist_circ" type="number" value="70">
-        </div>
-        <div class="measurement-group">
-            <label>Bust span</label>
-            <input id="bust_span" type="number" value="9">
-        </div>
-        <div class="measurement-group">
-            <label>Bust depth</label>
-            <input id="bust_depth" type="number" value="19">
-        </div>
-    </div>
-
-    <div id="container">
-        <svg height="100cm" width="100cm" viewBox=" -10 -10 400 400" id="svg" preserveAspectRatio="xMidYMid meet">
-            <path id="grid" stroke="grey " fill="none" stroke-width=".05" />
-            <polyline points="" id="polyLine" stroke="black" stroke-width=".25"
-            stroke-linecap="square" fill="none"  stroke-linejoin="miter"/>
-            <path id="armhole" d="" stroke="#FF0000" fill="none" stroke-width=".25"></path>
-            <path id="neckLine" d="" stroke="#FF0000" fill="none" stroke-width=".25"></path>
-        </svg>
     </div>
 </body>
 

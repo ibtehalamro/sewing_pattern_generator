@@ -1,0 +1,41 @@
+.body_container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Split the container into two equal columns */
+  grid-template-rows: auto; /* Each row will have a height determined by its content */
+  grid-template-areas: "buttons buttons" "left right";
+  gap: 1rem;
+}
+
+.left {
+  grid-area: left;
+  border: 2px solid gray;
+  padding: 1rem 1rem;
+  overflow-y: scroll;
+  max-height: 90vh;
+  border-radius: 10px;
+  scroll-behavior: smooth;
+}
+
+.right {
+  grid-area: right;
+}
+
+.buttons_container {
+  grid-area: buttons;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 6px;
+}

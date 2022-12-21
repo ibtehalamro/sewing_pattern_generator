@@ -1,8 +1,13 @@
 export class Curve {
+    points=[];
     constructor() {
         //constructor
       }
      
+
+      setPoints(points) {
+        this.points = points;
+      }
  generatePath(points, relative)
  {
      let type = null;
@@ -39,21 +44,22 @@ export class Curve {
      return pathPoints.join(" ");
  }
  
- threePointCurveFromPointsArray(points)
+ threePointCurveFromPointsArray( )
  {
      // const points = [[50,50],[150,550],[750,50]];
-     const pathString = this.generatePath(points, false);
-    
-     document.getElementById("neckLine").setAttribute("d", pathString);
+     const pathString = this.generatePath(this.points, false);
+    return pathString;
+    //  document.getElementById("neckLine").setAttribute("d", pathString);
     //  this.drawPoints(points, "#2596be");
  }
  
-  fourPointCurveFromPointsArray(points)
+  fourPointCurveFromPointsArray()
  {
      // const points = [[0,0],[30,10],[50,30],[80,100]];
-     const pathString = this.generatePath(points, false);
+     const pathString = this.generatePath(this.points, false);
+     return pathString;
    
-     document.getElementById("armhole").setAttribute("d", pathString);
+    //  document.getElementById("armhole").setAttribute("d", pathString);
     //   this.drawPoints(points, "#2596be");
  }
  
@@ -73,6 +79,26 @@ export class Curve {
  
          document.getElementById("svg").appendChild(circle);
      }
+ }
+
+ draw(svgId,strokeWidth){
+    let pathString;
+if(this.points.length ===3){
+    pathString=this.threePointCurveFromPointsArray();
+}else if(this.points.length===4){
+    pathString=this.fourPointCurveFromPointsArray();
+}
+
+
+    let svg = document.getElementById(svgId);
+    let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d",pathString);  // M = move to, L = line to
+    path.setAttribute("stroke", "black");
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke-width",strokeWidth );
+
+    svg.appendChild(path);
+    
  }
  
 }

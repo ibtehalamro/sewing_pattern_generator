@@ -4,6 +4,8 @@ import { Pattern } from "./Pattern.js";
 import { Point } from "./Point.js";
 import { Line } from "./Line.js";
 import { Curve } from "./Curve.js";
+import { PatternElement } from "./PatternElement.js";
+
 let neckCirc = 0;
 let shoulderWidth = 0;
 let armHoleCirc = 0;
@@ -13,6 +15,7 @@ let waistToShoulderLengthBack = 0;
 let waistCirc = 0;
 let bustSpan = 0;
 let bustDepth = 0;
+
 (() => {
   resetSvg();
   entryPoint();
@@ -44,6 +47,7 @@ function manageButtons() {
   document
     .querySelector("#generate_back_bodice")
     .addEventListener("click", () => generateBackBodicePattern());
+  manageLineStrokeRangeSelector();
 }
 
 function getMeasurements() {
@@ -111,8 +115,6 @@ function generateFrontBodicePattern() {
   const sideDartUpperPoint = new Line(point16, point18);
 
   let mainBlock = [];
-  mainBlock.push(neckLineLowerLine);
-  mainBlock.push(neckLineVerticalLine);
   mainBlock.push(shoulderLine);
   mainBlock.push(armpitToWaistLine);
   mainBlock.push(waistLine);
@@ -130,6 +132,8 @@ function generateFrontBodicePattern() {
   extraElements.push(bustDepthLine);
   extraElements.push(upperArmholeLine);
   extraElements.push(lowerArmholeLine);
+  extraElements.push(neckLineLowerLine);
+  extraElements.push(neckLineVerticalLine);
 
   let neckCurve = new Curve();
   neckCurve.setPoints([
@@ -149,10 +153,10 @@ function generateFrontBodicePattern() {
   curves.push(armholeCurve);
 
   const pattern = new Pattern();
-  pattern.setMainBlock(mainBlock);
+  pattern.setMainElements(mainBlock);
   pattern.setDartLines(dartLines);
-  pattern.setExtraElements(extraElements);
-  pattern.setCurves(curves);
+  pattern.setGuideElements(extraElements);
+  pattern.setArmholeCurves(curves);
   pattern.draw("svg");
 }
 
@@ -192,8 +196,6 @@ function generateBackBodicePattern() {
   const backDartRightLegLine = new Line(point12, point14);
 
   let mainBlock = [];
-  mainBlock.push(neckLineLowerLine);
-  mainBlock.push(neckLineVerticalLine);
   mainBlock.push(shoulderLine);
   mainBlock.push(armpitToWaistLine);
   mainBlock.push(waistLine);
@@ -207,6 +209,8 @@ function generateBackBodicePattern() {
   let extraElements = [];
   extraElements.push(upperArmholeLine);
   extraElements.push(lowerArmholeLine);
+  extraElements.push(neckLineLowerLine);
+  extraElements.push(neckLineVerticalLine);
 
   let neckCurve = new Curve();
   neckCurve.setPoints([
@@ -221,17 +225,22 @@ function generateBackBodicePattern() {
     [point7.getX(), point7.getY()],
     point9.getPointAsArray(),
   ]);
-  let curves = [];
-  curves.push(neckCurve);
-  curves.push(armholeCurve);
+
+  let armholeCurves = [];
+  armholeCurves.push(armholeCurve);
+
+  let neckLineCurves = [];
+  armholeCurves.push(neckCurve);
 
   const pattern = new Pattern();
-  pattern.setMainBlock(mainBlock);
+  pattern.setMainElements(mainBlock);
   pattern.setDartLines(dartLines);
-  pattern.setExtraElements(extraElements);
-  pattern.setCurves(curves);
+  pattern.setGuideElements(extraElements);
+  pattern.setArmholeCurves(armholeCurves);
+  pattern.setNeckLineCurves(neckLineCurves);
   pattern.draw("svg");
 }
+
 function getNeckWidth() {
   return neckCirc / 5;
 }
@@ -266,4 +275,21 @@ function getPointAwayOnLine(point1, point2) {
   let point = new Draw().getPointOnLineAwayByDistance(2.5, point1, point2);
 
   return new Point(point.xt, point.yt);
+}
+
+function manageLineStrokeRangeSelector() {
+  const inputRange = document.querySelector('#line-stroke');
+
+  inputRange.addEventListener('input', () => {
+    const value = inputRange.value;
+
+    const patternElementKeys = Object.keys(PatternElement.Element);
+    patternElementKeys.forEach((patternElementKey) => {
+      const mainElements = document.querySelectorAll("." + PatternElement.Element[patternElementKey].className);
+      mainElements.forEach(element => { element.setAttribute('stroke-width', (value / 10) * PatternElement.Element[patternElementKey].weight); console.log("value"); })
+
+    })
+
+    console.log(value);
+  });
 }

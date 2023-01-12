@@ -15,15 +15,17 @@ export class Line {
     return this.point2;
   }
 
-  draw(svgId, strokeWidth=1) {
+  draw(svgId, patternElement) {
     let svg = document.getElementById(svgId);
     let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
     line.setAttribute("x1", this.point1.getX());
     line.setAttribute("y1", this.point1.getY());
     line.setAttribute("x2", this.point2.getX());
     line.setAttribute("y2", this.point2.getY());
-    line.setAttribute("stroke", "black");
-    line.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke", patternElement.color);
+    line.setAttribute("stroke-dasharray", patternElement.dashed);
+    line.setAttribute("stroke-width", patternElement.stroke);
+    line.classList.add(patternElement.className);
     svg.appendChild(line);
   }
 

@@ -16,12 +16,12 @@ export class Draw {
     return m;
   }
 
-  getPointOnLineAwayByDistance(lineLength, point1 , point2) {
-    const x1=point1.getX();
-    const y1=point1.getY();
+  getPointOnLineAwayByDistance(lineLength, point1, point2) {
+    const x1 = point1.getX();
+    const y1 = point1.getY();
 
-    const x2=point2.getX();
-    const y2=point2.getY();
+    const x2 = point2.getX();
+    const y2 = point2.getY();
 
     let dis = Math.hypot(x2 - x1, y2 - y1);
 
@@ -33,17 +33,17 @@ export class Draw {
     return { xt, yt };
   }
 
-  getLineMiddlePoint(point1 , point2){
-    let x1=point1.getX()+4;
-    let y1=point1.getY();
+  getLineMiddlePoint(point1, point2) {
+    let x1 = point1.getX() + 4;
+    let y1 = point1.getY();
 
-    let x2=point2.getX();
-    let y2=point2.getY();
+    let x2 = point2.getX();
+    let y2 = point2.getY();
 
-    let dis = Math.hypot(x2 - x1, y2 - y1)/2;
+    let dis = Math.hypot(x2 - x1, y2 - y1) / 2;
 
     return this.getPointOnLineAwayByDistance(dis, point1, point2);
-   
+
   }
 
 

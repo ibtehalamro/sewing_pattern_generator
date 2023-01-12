@@ -1,69 +1,75 @@
-export class Pattern{
-    strokeWidth = .5;
-    mainBlock=[];
-    dartLines=[];
-    extraElements =[];
-    curves = [];
-    constructor(lines){
-        if(lines!=undefined){
-        this.mainBlock.push(lines);
-    }
-    }
-    
-    draw(svgId){
-        this.mainBlock.forEach(element =>{
-            element.draw(svgId,this.strokeWidth);
-        });
+import { PatternElement } from "./PatternElement.js";
 
-        this.dartLines.forEach(element =>{
-            element.draw(svgId,this.strokeWidth);
-        });
-
-        this.extraElements.forEach(element =>{
-            element.draw(svgId,this.strokeWidth);
-        });
-        this.curves.forEach(element =>{
-            element.draw(svgId,this.strokeWidth);
-        });
+export class Pattern {
+  strokeWidth = .5;
+  mainElements = [];
+  dartLines = [];
+  guideElements = [];
+  armholeCurves = [];
+  NecklineCurves = [];
+  constructor(lines) {
+    if (lines != undefined) {
+      this.mainElements.push(lines);
     }
-
-     // Setter for the mainBlock property
-  setMainBlock(lines) {
-     this.mainBlock = lines;
   }
 
-  // Getter for the mainBlock property
-  getMainBlock() {
-    return this.mainBlock;
+  draw(svgId) {
+    this.mainElements.forEach(element => {
+      element.draw(svgId, PatternElement.Element.Main);
+    });
+
+    this.dartLines.forEach(element => {
+      element.draw(svgId, PatternElement.Element.Dart);
+    });
+
+    this.guideElements.forEach(element => {
+      element.draw(svgId, PatternElement.Element.Guide);
+    });
+    this.armholeCurves.forEach(element => {
+      element.draw(svgId, PatternElement.Element.Armhole);
+    });
+    this.NecklineCurves.forEach(element => {
+      element.draw(svgId, PatternElement.Element.Armhole);
+    });
   }
 
-  // Setter for the dartLines property
+  setMainElements(lines) {
+    this.mainElements = lines;
+  }
+
+  getMainElements() {
+    return this.mainElements;
+  }
+
   setDartLines(lines) {
     this.dartLines = lines;
   }
 
-  // Getter for the dartLines property
   getDartLines() {
     return this.dartLines;
   }
 
-  // Setter for the extraElements property
-  setExtraElements(elements) {
-    this.extraElements = elements;
+  setGuideElements(elements) {
+    this.guideElements = elements;
   }
 
-  // Getter for the extraElements property
-  getExtraElements() {
-    return this.extraElements;
+  getGuideElements() {
+    return this.guideElements;
   }
 
-   // Setter for the Curves property
-   setCurves(curves) {
-    this.curves = curves;
+  setArmholeCurves(curves) {
+    this.armholeCurves = curves;
   }
 
-  // Getter for the Curves property
-  getCurves() {
-    return this.curves;
+  getArmholeCurves() {
+    return this.armholeCurves;
+  }
+
+  setNeckLineCurves(curves) {
+    this.NecklineCurves = curves;
+  }
+
+  getNeckLineCurves() {
+    return this.NecklineCurves;
   }
 }

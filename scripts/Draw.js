@@ -68,23 +68,5 @@ export class Draw {
     let perpY = point2.getY() + perpSlope * (perpX - point2.getX());
     return { xt: perpX, yt: perpY };
   }
-
-  
-  drawSleeveCurve(points) {
-    console.log('points', points)
-    let pathString = "M " + points.points[0] + " " + points.points[0] + " C ";
-    for (let i = 1; i < points.points.length; i++) {
-      pathString += points.points[i][0] + " " + points.points[i][1] + " ";
-    }
-    let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", pathString);
-    path.setAttribute("stroke", "black");
-    path.setAttribute("fill", "none");
-    path.setAttribute("stroke-width", .3);
-
-    document.getElementById("svg").innerHTML = "";
-    console.log('path', path)
-    document.getElementById("svg").appendChild(path);
-  }
 }
 

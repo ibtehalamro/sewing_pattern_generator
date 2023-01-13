@@ -327,8 +327,8 @@ function generateWomenSleevePattern() {
   mainBlock.push(frontSleeveSide);
   mainBlock.push(bottomSleeve);
 
-  let backCurve = new Curve();
-  backCurve.setPoints([
+  let sleeveCurves = new Curve();
+  sleeveCurves.setPoints([
     point1.getPointAsArray(),
     [point1.getX() + 4, point1.getY()],
     [point21.getX(), point21.getY()],
@@ -346,11 +346,12 @@ function generateWomenSleevePattern() {
 
   ]);
 
-  new Draw().drawSleeveCurve(backCurve);
+
 
   const pattern = new Pattern();
   pattern.setMainElements(mainBlock);
   pattern.setGuideElements(guideElements);
+  pattern.setSleeveCurves([sleeveCurves]);
   pattern.draw("svg");
 }
 
@@ -418,7 +419,9 @@ function manageLineStrokeRangeSelector() {
     const patternElementKeys = Object.keys(PatternElement.Element);
     patternElementKeys.forEach((patternElementKey) => {
       const mainElements = document.querySelectorAll("." + PatternElement.Element[patternElementKey].className);
-      mainElements.forEach(element => { element.setAttribute('stroke-width', (value / 10) * PatternElement.Element[patternElementKey].weight); console.log("value"); })
+      mainElements.forEach(element => { 
+        element.setAttribute('stroke-width', (value / 10) * PatternElement.Element[patternElementKey].weight);
+       })
 
     })
 

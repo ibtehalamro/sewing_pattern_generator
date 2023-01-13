@@ -91,5 +91,19 @@ export class Curve {
         svg.appendChild(path);
 
     }
+    drawSleeveCurve(svgId, PatternElement) {
+        console.log('points', this.points)
+        let pathString = "M " + this.points[0] + " " + this.points[0] + " C ";
+        for (let i = 1; i < this.points.length; i++) {
+            pathString += this.points[i][0] + " " + this.points[i][1] + " ";
+        }
+        let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", pathString);
+        path.setAttribute("stroke", PatternElement.color);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke-width", PatternElement.stroke);
+        path.classList.add(PatternElement.className);
 
+        document.getElementById(svgId).appendChild(path);
+    }
 }

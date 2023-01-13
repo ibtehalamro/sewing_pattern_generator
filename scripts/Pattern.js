@@ -7,6 +7,7 @@ export class Pattern {
   guideElements = [];
   armholeCurves = [];
   NecklineCurves = [];
+  SleeveCurves = [];
   constructor(lines) {
     if (lines != undefined) {
       this.mainElements.push(lines);
@@ -29,7 +30,11 @@ export class Pattern {
       element.draw(svgId, PatternElement.Element.Armhole);
     });
     this.NecklineCurves.forEach(element => {
-      element.draw(svgId, PatternElement.Element.Armhole);
+      element.draw(svgId, PatternElement.Element.Neck);
+    });
+    console.log('SleeveCurves', this.SleeveCurves)
+    this.SleeveCurves.forEach(element => {
+      element.drawSleeveCurve(svgId, PatternElement.Element.SleeveCurve);
     });
   }
 
@@ -71,5 +76,13 @@ export class Pattern {
 
   getNeckLineCurves() {
     return this.NecklineCurves;
+  }
+
+  setSleeveCurves(curves) {
+    this.SleeveCurves = curves;
+  }
+
+  getSleeveCurves() {
+    return this.SleeveCurves;
   }
 }

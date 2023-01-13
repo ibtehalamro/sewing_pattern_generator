@@ -15,7 +15,10 @@ let waistToShoulderLengthBack = 0;
 let waistCirc = 0;
 let bustSpan = 0;
 let bustDepth = 0;
-
+let frontArmHoleLength = 0;
+let backArmHoleLength = 0;
+let wristWidth = 0;
+let sleeveLength = 0;
 (() => {
   resetSvg();
   entryPoint();
@@ -47,6 +50,9 @@ function manageButtons() {
   document
     .querySelector("#generate_back_bodice")
     .addEventListener("click", () => generateBackBodicePattern());
+  document
+    .querySelector("#generate_women_sleeve")
+    .addEventListener("click", () => generateWomenSleevePattern());
   manageLineStrokeRangeSelector();
 }
 
@@ -64,6 +70,10 @@ function getMeasurements() {
   waistCirc = parseFloat(document.querySelector("#waist_circ").value);
   bustSpan = parseFloat(document.querySelector("#bust_span").value);
   bustDepth = parseFloat(document.querySelector("#bust_depth").value);
+  frontArmHoleLength = parseFloat(document.querySelector("#front_armhole_length").value);
+  backArmHoleLength = parseFloat(document.querySelector("#back_armhole_length").value);
+  wristWidth = parseFloat(document.querySelector("#wrist_width").value);
+  sleeveLength = parseFloat(document.querySelector("#sleeve_length").value);
 }
 
 function generateFrontBodicePattern() {
@@ -240,6 +250,118 @@ function generateBackBodicePattern() {
   pattern.setNeckLineCurves(neckLineCurves);
   pattern.draw("svg");
 }
+function getSleeveCapLineSegmentLength(point1, point2) {
+  const lineLength = new Draw().lineLength(point1, point2);
+  return lineLength / 4;
+}
+function generateWomenSleevePattern() {
+  resetSvg();
+  //not all points will be added to the pattern just the ones that will drawn
+  getMeasurements();
+  const point1 = new Point(0, sleeveCupHeight());
+  const point2 = new Point(sleeveRectWidth() - 1, 0);
+  const point3 = new Point(sleeveRectWidth(), 0);
+  const point4 = new Point(sleeveRectWidth() + 1, 0);
+  const point5 = new Point(sleeveRectWidth() * 2, sleeveCupHeight());
+  const point6 = new Point(point3.getX() + (.5 * wristWidth), sleeveLength);
+  const point7 = new Point(point3.getX(), point6.getY());
+  const point8 = new Point(point3.getX() - (.5 * wristWidth), sleeveLength);
+  const point9 = new Point(point3.getX(), sleeveCupHeight());
+  ////////
+  const segmentLength = getSleeveCapLineSegmentLength(point1, point2);
+  const point10 = getPointOnLineAwayByDistance(segmentLength, point1, point2);
+  const point11 = getPointOnLineAwayByDistance(segmentLength * 2, point1, point2);
+  const point12 = getPointOnLineAwayByDistance(segmentLength * 3, point1, point2);
+  const point13 = getPointOnLineAwayByDistance(segmentLength, point4, point5);
+  const point14 = getPointOnLineAwayByDistance(segmentLength * 2, point4, point5);
+  const point15 = getPointOnLineAwayByDistance(segmentLength * 3, point4, point5);
+  const point16 = perpendicularPointOnLine(point4, point13, 1.5);
+  const point17 = perpendicularPointOnLine(point5, point15, -1.5);
+  const point18 = perpendicularPointOnLine(point4, point14, .5);
+  const point19 = perpendicularPointOnLine(point2, point12, -1.5);
+  const point20 = perpendicularPointOnLine(point2, point11, -1);
+  const point21 = perpendicularPointOnLine(point2, point10, 0.75);
+
+
+
+  const guideLine1 = new Line(point1, point2);
+  const guideLine2 = new Line(point2, point3);
+  const guideLine3 = new Line(point3, point4);
+  const guideLine4 = new Line(point4, point5);
+  const guideLine5 = new Line(point5, point6);
+  const guideLine6 = new Line(point6, point7);
+  const guideLine7 = new Line(point7, point8);
+  const guideLine8 = new Line(point8, point1);
+  const guideLine9 = new Line(point1, point5);
+  const guideLine10 = new Line(point3, point7);
+  const guideLinePerp1 = new Line(point13, point16);
+  const guideLinePerp2 = new Line(point14, point18);
+  const guideLinePerp3 = new Line(point15, point17);
+  const guideLinePerp4 = new Line(point11, point20);
+  const guideLinePerp5 = new Line(point10, point21);
+  const guideLinePerp6 = new Line(point12, point19);
+
+  const backSleeveSide = new Line(point1, point8);
+  const frontSleeveSide = new Line(point5, point6);
+  const bottomSleeve = new Line(point6, point8);
+
+  let guideElements = [];
+  guideElements.push(guideLine1);
+  guideElements.push(guideLine2);
+  guideElements.push(guideLine3);
+  guideElements.push(guideLine4);
+  guideElements.push(guideLine5);
+  guideElements.push(guideLine6);
+  guideElements.push(guideLine7);
+  guideElements.push(guideLine8);
+  guideElements.push(guideLine9);
+  guideElements.push(guideLine10);
+  const mainBlock = [];
+  mainBlock.push(guideLinePerp1);
+  mainBlock.push(guideLinePerp2);
+  mainBlock.push(guideLinePerp3);
+  mainBlock.push(guideLinePerp4);
+  mainBlock.push(guideLinePerp5);
+  mainBlock.push(guideLinePerp6);
+  mainBlock.push(backSleeveSide);
+  mainBlock.push(frontSleeveSide);
+  mainBlock.push(bottomSleeve);
+
+  let backCurve = new Curve();
+  backCurve.setPoints([
+    point1.getPointAsArray(),
+    [point1.getX() + 4, point1.getY()],
+    [point21.getX(), point21.getY()],
+    point20.getPointAsArray(),
+
+    [point19.getX(), point19.getY() - 1],
+    [point2.getX(), point2.getY()],
+    [point3.getX(), point3.getY()],
+    [point4.getX(), point4.getY()],
+    [point16.getX() + 2, point16.getY()],
+    point14.getPointAsArray(),
+    point17.getPointAsArray(),
+    [point5.getX() - 4, point5.getY()],
+    point5.getPointAsArray()
+
+  ]);
+
+  new Draw().drawSleeveCurve(backCurve);
+
+  const pattern = new Pattern();
+  pattern.setMainElements(mainBlock);
+  pattern.setGuideElements(guideElements);
+  pattern.draw("svg");
+}
+
+
+function sleeveRectWidth() {
+  return frontArmHoleLength - 1;
+}
+
+function sleeveCupHeight() {
+  return (2 / 3) * backArmHoleLength;
+}
 
 function getNeckWidth() {
   return neckCirc / 5;
@@ -276,7 +398,17 @@ function getPointAwayOnLine(point1, point2) {
 
   return new Point(point.xt, point.yt);
 }
+function getPointOnLineAwayByDistance(distance, point1, point2) {
+  let point = new Draw().getPointOnLineAwayByDistance(distance, point1, point2);
 
+  return new Point(point.xt, point.yt);
+}
+
+function perpendicularPointOnLine(point1, point2, distance) {
+  let point = new Draw().perpendicularPointOnLine(point1, point2, distance);
+
+  return new Point(point.xt, point.yt);
+}
 function manageLineStrokeRangeSelector() {
   const inputRange = document.querySelector('#line-stroke');
 
@@ -292,4 +424,7 @@ function manageLineStrokeRangeSelector() {
 
     console.log(value);
   });
+
+
+
 }

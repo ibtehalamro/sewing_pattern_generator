@@ -1,10 +1,15 @@
+import { PatternElement } from "./Pattern/PatternElement.js";
 export class Curve {
     points = [];
-    constructor() {
-        //constructor
+    patternElement;
+
+    constructor(patternElement) {
+        this.patternElement = patternElement;
     }
 
-
+    get patternElement() {
+        this.patternElement;
+    }
     setPoints(points) {
         this.points = points;
     }
@@ -71,7 +76,11 @@ export class Curve {
         }
     }
 
-    draw(svgId, patternElement) {
+    draw(svgId) {
+        if (PatternElement.Element.SleeveCurve.name === this.patternElement.name) {
+            this.drawSleeveCurve(svgId);
+            return
+        }
         let pathString;
         if (this.points.length === 3) {
             pathString = this.threePointCurveFromPointsArray();
@@ -83,15 +92,15 @@ export class Curve {
         let svg = document.getElementById(svgId);
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
         path.setAttribute("d", pathString);  // M = move to, L = line to
-        path.setAttribute("stroke", patternElement.color);
+        path.setAttribute("stroke", this.patternElement.color);
         path.setAttribute("fill", "none");
-        path.setAttribute("stroke-width", patternElement.stroke);
-        path.classList.add(patternElement.className);
+        path.setAttribute("stroke-width", this.patternElement.stroke);
+        path.classList.add(this.patternElement.className);
 
         svg.appendChild(path);
 
     }
-    drawSleeveCurve(svgId, PatternElement) {
+    drawSleeveCurve(svgId) {
         console.log('points', this.points)
         let pathString = "M " + this.points[0] + " " + this.points[0] + " C ";
         for (let i = 1; i < this.points.length; i++) {
@@ -99,10 +108,10 @@ export class Curve {
         }
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
         path.setAttribute("d", pathString);
-        path.setAttribute("stroke", PatternElement.color);
+        path.setAttribute("stroke", this.patternElement.color);
         path.setAttribute("fill", "none");
-        path.setAttribute("stroke-width", PatternElement.stroke);
-        path.classList.add(PatternElement.className);
+        path.setAttribute("stroke-width", this.patternElement.stroke);
+        path.classList.add(this.patternElement.className);
 
         document.getElementById(svgId).appendChild(path);
     }

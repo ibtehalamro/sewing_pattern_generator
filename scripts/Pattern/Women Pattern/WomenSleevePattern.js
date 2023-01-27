@@ -1,4 +1,4 @@
-import { MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
+import { WOMEN_MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
 import { WomenPattern } from "./WomenPattern.js"
 import { Point } from "../../Point.js";
 import { Line } from "../../Line.js";
@@ -23,7 +23,7 @@ export class WomenSleevePattern extends WomenPattern {
 
     getInputIds() {
         const { bustWidth, frontArmHoleLengthSleeve, backArmHoleLengthSleeve,
-            wristWidthSleeve, sleeveLength } = MEASUREMENTS_INPUT_ID_ENUM;
+            wristWidthSleeve, sleeveLength } = WOMEN_MEASUREMENTS_INPUT_ID_ENUM;
 
         return [bustWidth, frontArmHoleLengthSleeve, backArmHoleLengthSleeve,
             wristWidthSleeve, sleeveLength];
@@ -39,12 +39,8 @@ export class WomenSleevePattern extends WomenPattern {
     }
 
     createPatternObject(points, lines) {
-        const { point1, point2, point3, point4, point5, point6, point7, point8, point10, point11,
-            point12, point13, point14, point15, point16, point17, point18, point19, point20, point21 } = points;
-        console.log('lines', lines)
-        console.log('points', points)
+        const { point1, point2, point3, point4, point5, point14, point16, point17, point19, point20, point21 } = points;
         let patternElements = [...Object.values(lines)];
-
 
         let sleeveCurves = new Curve(PatternElement.Element.SleeveCurve);
         sleeveCurves.setPoints([
@@ -68,17 +64,16 @@ export class WomenSleevePattern extends WomenPattern {
         this.setElements(patternElements);
     }
     getPointsObject() {
-        console.log(' this.sleeveCupHeight()', this.sleeveCupHeight())
         const point1 = new Point(0, this.sleeveCupHeight());
         const point2 = new Point(this.sleeveRectWidth() - 1, 0);
         const point3 = new Point(this.sleeveRectWidth(), 0);
         const point4 = new Point(this.sleeveRectWidth() + 1, 0);
         const point5 = new Point(this.sleeveRectWidth() * 2, this.sleeveCupHeight());
-        const point6 = new Point(point3.getX() + (.5 * this.measurements[MEASUREMENTS_INPUT_ID_ENUM.wristWidthSleeve]), this.measurements[MEASUREMENTS_INPUT_ID_ENUM.sleeveLength]);
+        const point6 = new Point(point3.getX() + (.5 * this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.wristWidthSleeve]), this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.sleeveLength]);
         const point7 = new Point(point3.getX(), point6.getY());
-        const point8 = new Point(point3.getX() - (.5 * this.measurements[MEASUREMENTS_INPUT_ID_ENUM.wristWidthSleeve]), this.measurements[MEASUREMENTS_INPUT_ID_ENUM.sleeveLength]);
+        const point8 = new Point(point3.getX() - (.5 * this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.wristWidthSleeve]), this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.sleeveLength]);
         const point9 = new Point(point3.getX(), this.sleeveCupHeight());
-        ////////
+
         const segmentLength = this.getSleeveCapLineSegmentLength(point1, point2);
         const point10 = SVGGeometry.getPointOnLineAwayByDistance(segmentLength, point1, point2);
         const point11 = SVGGeometry.getPointOnLineAwayByDistance(segmentLength * 2, point1, point2);
@@ -140,10 +135,10 @@ export class WomenSleevePattern extends WomenPattern {
     }
 
     sleeveRectWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.frontArmHoleLengthSleeve] - 1;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.frontArmHoleLengthSleeve] - 1;
     }
 
     sleeveCupHeight() {
-        return (2 / 3) * this.measurements[MEASUREMENTS_INPUT_ID_ENUM.backArmHoleLengthSleeve];
+        return (2 / 3) * this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.backArmHoleLengthSleeve];
     }
 }

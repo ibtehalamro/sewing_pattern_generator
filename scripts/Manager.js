@@ -1,10 +1,11 @@
 import { Draw } from "./Draw.js";
 import { SVGDownloadHandler } from "./Buttons.js";
-  
+
 import { PatternElement } from "./Pattern/PatternElement.js";
 import { WomenFrontBodice } from "./Pattern/Women Pattern/WomenFrontBodice.js";
 import { WomenBackBodice } from "./Pattern/Women Pattern/WomenBackBodice.js";
 import { WomenSleevePattern } from "./Pattern/Women Pattern/WomenSleevePattern.js";
+import { ChildBackBodice } from "./Pattern/Child Pattern/ChildBackBodice.js";
 
 (() => {
   resetSvg();
@@ -30,37 +31,57 @@ function drawGrid() {
 function manageButtons() {
   document
     .querySelector("#downloadSVG")
-    .addEventListener("click", () => SVGDownloadHandler());
+    ?.addEventListener("click", () => SVGDownloadHandler());
   document
     .querySelector("#generate_front_bodice")
-    .addEventListener("click", () => generateFrontBodicePattern());
+    ?.addEventListener("click", () => generateFrontBodicePattern());
   document
     .querySelector("#generate_back_bodice")
-    .addEventListener("click", () => generateBackBodicePattern());
+    ?.addEventListener("click", () => generateBackBodicePattern());
   document
     .querySelector("#generate_women_sleeve")
-    .addEventListener("click", () => generateWomenSleevePattern());
+    ?.addEventListener("click", () => generateWomenSleevePattern());
   manageLineStrokeRangeSelector();
+
+
+  document
+  .querySelector("#generate_child_front_bodice")
+  ?.addEventListener("click", () => generateChildFrontBodicePattern());
+document
+  .querySelector("#generate_child_back_bodice")
+  ?.addEventListener("click", () => generateChildBackBodicePattern());
+document
+  .querySelector("#generate_child_sleeve")
+  ?.addEventListener("click", () => generateChildSleevePattern());
+manageLineStrokeRangeSelector();
 }
 
-
-
+function generateChildFrontBodicePattern(){
+  alert("Child front")
+}
+function generateChildBackBodicePattern(){
+  const childPattern = new ChildBackBodice("svg");
+  childPattern.draw();
+}
+function generateChildSleevePattern(){
+  alert("Child sleeve")
+}
 function generateFrontBodicePattern() {
 
-  const frontPattern= new WomenFrontBodice("svg");
+  const frontPattern = new WomenFrontBodice("svg");
   frontPattern.draw();
 }
 
 function generateBackBodicePattern() {
-  
-  const backPattern= new WomenBackBodice("svg");
+
+  const backPattern = new WomenBackBodice("svg");
   backPattern.draw();
 
 }
 
 function generateWomenSleevePattern() {
- 
-  const sleevePattern= new WomenSleevePattern("svg");
+
+  const sleevePattern = new WomenSleevePattern("svg");
   sleevePattern.draw();
 }
 
@@ -76,9 +97,9 @@ function manageLineStrokeRangeSelector() {
     const patternElementKeys = Object.keys(PatternElement.Element);
     patternElementKeys.forEach((patternElementKey) => {
       const mainElements = document.querySelectorAll("." + PatternElement.Element[patternElementKey].className);
-      mainElements.forEach(element => { 
+      mainElements.forEach(element => {
         element.setAttribute('stroke-width', (value / 10) * PatternElement.Element[patternElementKey].weight);
-       })
+      })
 
     })
 

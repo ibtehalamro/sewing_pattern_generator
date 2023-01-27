@@ -14,23 +14,22 @@
 </head>
 
 <body>
-
-    <a href="./childPattern.html" >Go to child pattern</a>
+<a href="./index.html">Women pattern</a>
     <div class="body_container">
         <div class="buttons_container">
             <button id="downloadSVG" title="download">
                 download
             </button>
-            <button id="generate_front_bodice" class="pattern">
+            <button id="generate_child_front_bodice" class="pattern">
                 Generate front bodice
             </button>
     
-            <button id="generate_back_bodice" class="pattern">
+            <button id="generate_child_back_bodice" class="pattern">
                 Generate back bodice
             </button>
 
-            <button id="generate_women_sleeve" class="pattern">
-                Generate women sleeve
+            <button id="generate_child_sleeve" class="pattern">
+                Generate child sleeve
             </button>
         </div>
         <div class="left">
@@ -42,43 +41,35 @@
                     <label>Line thickness</label>
                     <input id="line-stroke" type="range" min="1" max="10" value="5" step="1">
                 </div>
-                <div class="measurement-group">
-                    <label>Neck circumference</label>
-                    <input id="neck_circ" type=" number" value="35">
-                </div>
+           
                 <div class="measurement-group">
                     <label>Shoulder width</label>
-                    <input id="shoulder_width" type="number" value="36">
+                    <input id="shoulder_width" type="number" value="7.75">
                 </div>
+            
                 <div class="measurement-group">
-                    <label>Armhole circumference</label>
-                    <input id="armhole_circ" type="number" value="36">
+                    <label>Back width</label>
+                    <input id="back_width" type="number" value="22">
                 </div>
                 <div class="measurement-group">
                     <label>Bust circumference</label>
-                    <input id="bust_circ" type="number" value="86">
-                </div>
-                <div class="measurement-group">
-                    <label>Shoulder to waist length front</label>
-                    <input id="shoulder_to_waist" type="number" value="40">
-                </div>
-                <div class="measurement-group">
-                    <label>Shoulder to waist length back</label>
-                    <input id="shoulder_to_waist_back" type="number" value="37">
-                </div>
-                <div class="measurement-group">
-                    <label>Waist circumference</label>
-                    <input id="waist_circ" type="number" value="70">
-                </div>
-                <div class="measurement-group">
-                    <label>Bust span</label>
-                    <input id="bust_span" type="number" value="9">
-                </div>
-                <div class="measurement-group">
-                    <label>Bust depth</label>
-                    <input id="bust_depth" type="number" value="19">
+                    <input id="bust_circ" type="number" value="56">
                 </div>
 
+                <div class="measurement-group">
+                    <label>Bust width</label>
+                    <input id="bust_width" type="number" value="21">
+                </div>
+
+
+                <div class="measurement-group">
+                    <label>Shoulder to waist length back</label>
+                    <input id="shoulder_to_waist_back" type="number" value="24.5">
+                </div>
+                
+
+
+                <!-- Sleeve -->
                 <div class="measurement-group">
                     <label>Front ArmHole Length</label>
                     <input id="front_armhole_length" type="number" value="18">
@@ -97,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="right">
+    <div class="right">
             <div id="container">
                 <svg height="80vh" width="100%" viewBox=" 0 0 60 60" id="svg"
                     preserveAspectRatio="xMinYMid meet">

@@ -1,4 +1,4 @@
-import { MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
+import { WOMEN_MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
 import { WomenPattern } from "./WomenPattern.js"
 import { Point } from "../../Point.js";
 import { Line } from "../../Line.js";
@@ -22,7 +22,7 @@ export class WomenFrontBodice extends WomenPattern {
     }
 
     getInputIds() {
-        const { neckCirc, shoulderWidth, armHoleCirc, bustWidth, waistToShoulderLength, waistCirc, bustSpan, bustDepth } = MEASUREMENTS_INPUT_ID_ENUM;
+        const { neckCirc, shoulderWidth, armHoleCirc, bustWidth, waistToShoulderLength, waistCirc, bustSpan, bustDepth } = WOMEN_MEASUREMENTS_INPUT_ID_ENUM;
         return [neckCirc, shoulderWidth, armHoleCirc, bustWidth, waistToShoulderLength, waistCirc, bustSpan, bustDepth];
     }
 
@@ -65,14 +65,14 @@ export class WomenFrontBodice extends WomenPattern {
         const point5 = new Point(point4.getX(), point4.getY() + this.getArmHoleHeight());
         const point6 = new Point(point4.getX() - 2, point4.getY() + this.getArmHoleHeight() / 2);
         const point7 = new Point(this.getBustWidth(), point5.getY());
-        const point8 = new Point(point1.getX(), this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLength]);
+        const point8 = new Point(point1.getX(), this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLength]);
         const point9 = new Point(this.getWaistWidth(), point8.getY());
         const point10 = new Point(point1.getX(), point1.getY() + this.getNeckWidth() + 1);
         const point11 = new Point(point2.getX(), point10.getY());
-        const point12 = new Point(this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustSpan], this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLength]);
-        const point13 = this.getBustPoint(this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustDepth], this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustSpan], this.getNeckWidth());
+        const point12 = new Point(this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustSpan], this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLength]);
+        const point13 = this.getBustPoint(this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustDepth], this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustSpan], this.getNeckWidth());
 
-        const point14 = new Point(this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustSpan], point13.getY() + 2.5);
+        const point14 = new Point(this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustSpan], point13.getY() + 2.5);
         const point15 = SVGGeometry.getLineMiddlePoint(point7, point9); //middle point of the side line
         const point16 = SVGGeometry.getPointOnLineAwayByDistance(2.5, point13, point15);
         const point17 = SVGGeometry.getPointOnLineAwayByDistance(2.5, point15, point7);
@@ -119,22 +119,22 @@ export class WomenFrontBodice extends WomenPattern {
     }
 
     getNeckWidth = () => {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.neckCirc] / 5;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.neckCirc] / 5;
     }
     getShoulderWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 2;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 2;
     }
     getShoulderSlope() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 10;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 10;
     }
     getArmHoleHeight() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
     }
     getBustWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4 + 1;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4 + 1;
     }
     getWaistWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 1 + 3; //3 cm as dart
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 1 + 3; //3 cm as dart
     }
     getBustPoint(bustDepth, bustSpan, neckWidth) {
         let y = Math.sqrt(Math.pow(bustDepth, 2) - Math.pow(bustSpan, 2));

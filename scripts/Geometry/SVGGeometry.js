@@ -73,13 +73,7 @@ export class Geometry {
         let yDiff = point2.getY() - point1.getY();
         return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
     }
-    static perpendicularPoint(x1, y1, x2, y2, distance) {
-        let slope = (y2 - y1) / (x2 - x1);
-        let perpSlope = -1 / slope;
-        let perpX = x1 + distance * Math.cos(Math.atan(perpSlope));
-        let perpY = y1 + distance * Math.sin(Math.atan(perpSlope));
-        return { xt: perpX, yt: perpY };
-    }
+ 
 
     static perpendicularPointOnLine(point1, point2, distance) {
         let slope = (point2.getY() - point1.getY()) / (point2.getX() - point1.getX());

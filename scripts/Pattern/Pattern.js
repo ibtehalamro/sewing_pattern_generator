@@ -14,7 +14,6 @@ export class Pattern {
   }
 
   getMeasurementsFromUserInput(requiredMeasurements) {
-    console.log('getMeasurementsFromUserInput', requiredMeasurements);
     const m = this.measurements.getMeasurementsFromUserInput(requiredMeasurements);
     return m;
   }

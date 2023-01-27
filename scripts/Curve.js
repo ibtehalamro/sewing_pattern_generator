@@ -101,7 +101,6 @@ export class Curve {
 
     }
     drawSleeveCurve(svgId) {
-        console.log('points', this.points)
         let pathString = "M " + this.points[0] + " " + this.points[0] + " C ";
         for (let i = 1; i < this.points.length; i++) {
             pathString += this.points[i][0] + " " + this.points[i][1] + " ";

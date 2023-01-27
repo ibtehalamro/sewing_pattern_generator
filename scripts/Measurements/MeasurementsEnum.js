@@ -1,5 +1,5 @@
 //This enum will be used to map input id's for measurements with code 
-export const MEASUREMENTS_INPUT_ID_ENUM={
+export const WOMEN_MEASUREMENTS_INPUT_ID_ENUM={
     neckCirc :"#neck_circ",
     shoulderWidth :"#shoulder_width",
     armHoleCirc :"#armhole_circ",
@@ -9,6 +9,19 @@ export const MEASUREMENTS_INPUT_ID_ENUM={
     waistCirc :"#waist_circ",
     bustSpan :"#bust_span",
     bustDepth :"#bust_depth",
+    frontArmHoleLengthSleeve :"#front_armhole_length",
+    backArmHoleLengthSleeve :"#back_armhole_length",
+    wristWidthSleeve :"#wrist_width",
+    sleeveLength :"#sleeve_length"
+}
+
+export const CHILD_MEASUREMENTS_INPUT_ID_ENUM={
+    shoulderWidth :"#shoulder_width",
+    waistToShoulderLengthBack :"#shoulder_to_waist_back",
+    chestCirc :"#bust_circ",
+    bustWidth :"#bust_width",
+    backWidth :"#back_width",
+
     frontArmHoleLengthSleeve :"#front_armhole_length",
     backArmHoleLengthSleeve :"#back_armhole_length",
     wristWidthSleeve :"#wrist_width",

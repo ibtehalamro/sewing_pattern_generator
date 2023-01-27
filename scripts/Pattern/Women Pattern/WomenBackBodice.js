@@ -1,4 +1,4 @@
-import { MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
+import { WOMEN_MEASUREMENTS_INPUT_ID_ENUM } from "../../Measurements/MeasurementsEnum.js";
 import { WomenPattern } from "./WomenPattern.js"
 import { Point } from "../../Point.js";
 import { Line } from "../../Line.js";
@@ -21,7 +21,7 @@ export class WomenBackBodice extends WomenPattern {
     }
 
     getInputIds() {
-        const { neckCirc, shoulderWidth, armHoleCirc, waistToShoulderLength, bustWidth, waistCirc, bustSpan, bustDepth, waistToShoulderLengthBack } = MEASUREMENTS_INPUT_ID_ENUM;
+        const { neckCirc, shoulderWidth, armHoleCirc, waistToShoulderLength, bustWidth, waistCirc, bustSpan, bustDepth, waistToShoulderLengthBack } = WOMEN_MEASUREMENTS_INPUT_ID_ENUM;
         return [neckCirc, shoulderWidth, armHoleCirc, waistToShoulderLength, bustWidth, waistCirc, bustSpan, bustDepth, waistToShoulderLengthBack];
     }
 
@@ -61,7 +61,7 @@ export class WomenBackBodice extends WomenPattern {
         this.setElements(patternElements);
     }
     getPointsObject() {
-        const point1 = new Point(0, this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLengthBack]);
+        const point1 = new Point(0, this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistToShoulderLengthBack]);
         const point2 = new Point(point1.getX(), 2);
         const point3 = new Point(point1.getX() + this.getNeckWidth(), point2.getY());
         const point4 = new Point(point3.getX(), 0);
@@ -72,8 +72,8 @@ export class WomenBackBodice extends WomenPattern {
             point7.getX() - 1,
             point6.getY() + this.getArmHoleHeight() / 2
         );
-        const point9 = new Point(this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4, point7.getY());
-        const point10 = new Point(this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 2, point1.getY());
+        const point9 = new Point(this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4, point7.getY());
+        const point10 = new Point(this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 2, point1.getY());
         const point11 = new Point(point1.getX() + point10.getX() / 2, point1.getY());
         const point12 = new Point(point11.getX(), point7.getY() + 2.5);
         const point13 = new Point(point11.getX() - 1, point11.getY());
@@ -110,22 +110,22 @@ export class WomenBackBodice extends WomenPattern {
     }
 
     getNeckWidth = () => {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.neckCirc] / 5;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.neckCirc] / 5;
     }
     getShoulderWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 2;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 2;
     }
     getShoulderSlope() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 10;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.shoulderWidth] / 10;
     }
     getArmHoleHeight() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
     }
     getBustWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4 + 1;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.bustWidth] / 4 + 1;
     }
     getWaistWidth() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 1 + 3; //3 cm as dart
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.waistCirc] / 4 + 1 + 3; //3 cm as dart
     }
     getBustPoint(bustDepth, bustSpan, neckWidth) {
         let y = Math.sqrt(Math.pow(bustDepth, 2) - Math.pow(bustSpan, 2));
@@ -133,7 +133,7 @@ export class WomenBackBodice extends WomenPattern {
     }
 
     getArmHoleHeight() {
-        return this.measurements[MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
+        return this.measurements[WOMEN_MEASUREMENTS_INPUT_ID_ENUM.armHoleCirc] / 2;
     }
 }
 

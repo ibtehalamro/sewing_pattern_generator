@@ -7,6 +7,7 @@ import { WomenBackBodice } from "./Pattern/Women Pattern/WomenBackBodice.js";
 import { WomenSleevePattern } from "./Pattern/Women Pattern/WomenSleevePattern.js";
 import { ChildBackBodice } from "./Pattern/Child Pattern/ChildBackBodice.js";
 import { ChildFrontBodice } from "./Pattern/Child Pattern/ChildFrontBodice.js";
+import { ChildSleevePattern } from "./Pattern/Child Pattern/ChildSleevePattern.js";
 
 (() => {
   resetSvg();
@@ -66,7 +67,8 @@ function generateChildBackBodicePattern(){
   childPattern.draw();
 }
 function generateChildSleevePattern(){
-  alert("Child sleeve")
+  const childSleevePattern = new ChildSleevePattern("svg");
+  childSleevePattern.draw();
 }
 function generateFrontBodicePattern() {
 

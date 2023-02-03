@@ -1,10 +1,11 @@
 import { Measurements } from "../Measurements/Measurements.js";
 import { Draw } from "../Draw.js";
 export class Pattern {
+    drawObject = new Draw();
 
   constructor(svgId) {
     this.svgId = svgId;
-    this.strokeWidth = .5;
+    this.strokeWidth = 0.5;
     this.measurements = new Measurements();
 
   }
@@ -25,7 +26,7 @@ export class Pattern {
   }
 
   drawGrid() {
-    let m = new Draw().drawGrid();
+    drawObject.drawGrid();
     document.getElementById("grid").setAttribute("d", m);
   }
 

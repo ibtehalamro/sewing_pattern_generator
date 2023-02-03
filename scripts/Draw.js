@@ -16,5 +16,15 @@ export class Draw {
     return m;
   }
 
+  drawCircleAtPoint(point ,r,color){
+    var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", point.getX());
+    circle.setAttribute("cy", point.getY());
+    circle.setAttribute("r", r);
+    circle.setAttribute("fill",color);
+    
+   
+  return circle; }
+
 }
 

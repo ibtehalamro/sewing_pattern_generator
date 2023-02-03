@@ -22,7 +22,8 @@ export const CHILD_MEASUREMENTS_INPUT_ID_ENUM={
     bustWidth :"#bust_width",
     backWidth :"#back_width",
 
-    frontArmHoleLengthSleeve :"#front_armhole_length",
+    frontArmHoleCurveLengthSleeve :"#front_armhole_curve_length",
+    backArmHoleCurveLengthSleeve :"#back_armhole_curve_length",
     backArmHoleLengthSleeve :"#back_armhole_length",
     wristWidthSleeve :"#wrist_width",
     sleeveLength :"#sleeve_length"

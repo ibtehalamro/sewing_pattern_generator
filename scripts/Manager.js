@@ -6,6 +6,7 @@ import { WomenFrontBodice } from "./Pattern/Women Pattern/WomenFrontBodice.js";
 import { WomenBackBodice } from "./Pattern/Women Pattern/WomenBackBodice.js";
 import { WomenSleevePattern } from "./Pattern/Women Pattern/WomenSleevePattern.js";
 import { ChildBackBodice } from "./Pattern/Child Pattern/ChildBackBodice.js";
+import { ChildFrontBodice } from "./Pattern/Child Pattern/ChildFrontBodice.js";
 
 (() => {
   resetSvg();
@@ -57,7 +58,8 @@ manageLineStrokeRangeSelector();
 }
 
 function generateChildFrontBodicePattern(){
-  alert("Child front")
+  const childPattern = new ChildFrontBodice("svg");
+  childPattern.draw();
 }
 function generateChildBackBodicePattern(){
   const childPattern = new ChildBackBodice("svg");
@@ -84,10 +86,6 @@ function generateWomenSleevePattern() {
   const sleevePattern = new WomenSleevePattern("svg");
   sleevePattern.draw();
 }
-
-
-
-
 function manageLineStrokeRangeSelector() {
   const inputRange = document.querySelector('#line-stroke');
 
@@ -105,7 +103,4 @@ function manageLineStrokeRangeSelector() {
 
     console.log(value);
   });
-
-
-
 }

@@ -62,7 +62,7 @@ export class Curve {
 
 
 
-    drawPoints(points, colour) {
+    drawPoints(points, color) {
         for (const point of points) {
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
@@ -70,7 +70,7 @@ export class Curve {
             circle.setAttributeNS(null, "cy", point[1]);
             circle.setAttributeNS(null, "r", .5);
 
-            circle.setAttributeNS(null, "fill", colour);
+            circle.setAttributeNS(null, "fill", color);
 
             document.getElementById("svg").appendChild(circle);
         }
@@ -101,6 +101,12 @@ export class Curve {
 
     }
     drawSleeveCurve(svgId) {
+        let path = this.generateCurvePath();
+
+        document.getElementById(svgId).appendChild(path);
+    }
+
+    generateCurvePath() {
         let pathString = "M " + this.points[0] + " " + this.points[0] + " C ";
         for (let i = 1; i < this.points.length; i++) {
             pathString += this.points[i][0] + " " + this.points[i][1] + " ";
@@ -111,7 +117,6 @@ export class Curve {
         path.setAttribute("fill", "none");
         path.setAttribute("stroke-width", this.patternElement.stroke);
         path.classList.add(this.patternElement.className);
-
-        document.getElementById(svgId).appendChild(path);
+        return path;
     }
 }
